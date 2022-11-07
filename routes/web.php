@@ -17,17 +17,44 @@ use Inertia\Inertia;
 */
 
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+
+
+Route::get('/',function(){
+    return Inertia::render('Login');
+});
+
+Route::get('/home',function(){
+    return Inertia::render('Mahasiswa/Homepage');
+});
+
+Route::get('/courses',function(){
+    return Inertia::render('Mahasiswa/AllCourses');
+});
+
+Route::get('/class',function(){
+    return Inertia::render('Mahasiswa/YourClass');
+});
+Route::get('/profile',function(){
+    return Inertia::render('YourProfile');
+});
+Route::get('/enroll/{id}',function(){
+    return Inertia::render('Mahasiswa/Enroll');
+});
+Route::get('/class/detail/{id}',function(){
+    return Inertia::render('Mahasiswa/ClassDetail');
+});
+
+Route::get('/dosen/home',function(){
+    return Inertia::render('Dosen/Homepage');
+});
+
+Route::get('/dosen/notification',function(){
+    return Inertia::render('Dosen/Notification');
 });
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';

@@ -1,0 +1,6 @@
+.side-link {
+    @apply flex flex-row mb-[20px] text-sm items-center gap-3;
+}
+.side-link.active {
+    @apply font-semibold border-alerange border-r-[3px];
+}

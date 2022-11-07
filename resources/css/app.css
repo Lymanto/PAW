@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.hvh-100 {
+    height: 100vh;
+}
+.img-logo {
+    max-width: 163px;
+}

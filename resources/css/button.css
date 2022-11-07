@@ -1,0 +1,6 @@
+.btn-primary {
+    @apply bg-alerange text-white;
+}
+.btn-second {
+    @apply bg-gray-3 text-black font-normal;
+}
