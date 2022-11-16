@@ -52,6 +52,14 @@ Route::get('/dosen/notification',function(){
     return Inertia::render('Dosen/Notification');
 });
 
+Route::get('/dosen/class/detail/{id}',function(){
+    return Inertia::render('Dosen/ClassDetail');
+});
+
+Route::get('/dosen/class/detail/{id}/upload',function(){
+    return Inertia::render('Dosen/Upload');
+});
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

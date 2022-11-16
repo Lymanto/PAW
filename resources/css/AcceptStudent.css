@@ -1,0 +1,6 @@
+.btn-approve {
+    @apply w-[40px] h-[40px] px-[0px] py-[0px] rounded-full bg-approve;
+}
+.btn-cancel {
+    @apply w-[40px] h-[40px] px-[0px] py-[0px] rounded-full bg-cancel;
+}

@@ -27,6 +27,7 @@ export default function HomepageDosen() {
                         title="Lymanto Hadibrata"
                         nim="2010101022"
                         subTitle="Pemrograman Web"
+                        variant="notification"
                     />
                 </div>
             </div>

@@ -16,11 +16,26 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $admin = User::create([
-            'name'=>'Admin',
+            'name'=>'admin',
             'email'=>'admin@pradita.ac.id',
             'password'=>bcrypt('admin123'),
-
         ]);
         $admin->assignRole('admin');
+
+        $dosen = User::create([
+            'name'=>'Handri Santoso',
+            'email'=>'handri.santoso@pradita.ac.id',
+            'password'=>bcrypt('dosen123'),
+        ]);
+        $dosen->assignRole('dosen');
+
+        $mahasiswa = User::create([
+            'name'=>'Lymanto Hadibrata',
+            'nim'=>'2010101022',
+            'email'=>'lymanto.hadibrata@student.pradita.ac.id',
+            'password'=>bcrypt('mahasiswa123'),
+        ]);
+        $mahasiswa->assignRole('mahasiswa');
+        
     }
 }

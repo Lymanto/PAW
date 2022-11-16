@@ -2,6 +2,8 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    // important: true,
+
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
@@ -28,6 +30,9 @@ module.exports = {
                 "form-bg": "#212121",
                 "gray-3": "#E5E9F2",
                 "gray-4": "#999AA4",
+                "gray-5": "#E5E7EB",
+                cancel: "#DD5353",
+                approve: "#21BF73",
             },
             screens: {
                 laptopLg: "1160px",
