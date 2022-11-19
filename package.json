@@ -12,7 +12,7 @@
         "@tailwindcss/forms": "^0.5.2",
         "@vitejs/plugin-react": "^2.0.0",
         "autoprefixer": "^10.4.2",
-        "axios": "^0.27",
+        "axios": "^1.1.3",
         "laravel-vite-plugin": "^0.6.0",
         "lodash": "^4.17.19",
         "postcss": "^8.4.6",
@@ -22,8 +22,14 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
+        "@azure/storage-blob": "^12.12.0",
         "flickity": "^2.3.0",
+        "react-azure-blob-storage": "^3.0.2",
+        "react-azure-mp": "^1.0.5",
         "react-dropzone": "^14.2.3",
-        "react-flickity-component": "^3.6.3"
+        "react-flickity-component": "^3.6.3",
+        "react-lottie": "^1.2.3",
+        "react-player": "^2.11.0",
+        "react-toastify": "^9.1.1"
     }
 }

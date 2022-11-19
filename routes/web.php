@@ -4,6 +4,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Mahasiswa\HomepageController;
+use App\Http\Controllers\Mahasiswa\AllCoursesController;
+use App\Http\Controllers\Mahasiswa\EnrollController;
+use App\Http\Controllers\Mahasiswa\YourClassController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,30 +23,34 @@ use Inertia\Inertia;
 
 
 
-Route::get('/',function(){
-    return Inertia::render('Login');
+Route::redirect('/', '/login');
+
+Route::middleware(['auth','role:mahasiswa'])->prefix('home')->name('mahasiswa.home')->group(function(){
+    Route::get('/',[HomepageController::class,'index'])->name('index');
 });
 
-Route::get('/home',function(){
-    return Inertia::render('Mahasiswa/Homepage');
+Route::middleware(['auth','role:mahasiswa'])->prefix('courses')->name('mahasiswa.courses')->group(function(){
+    Route::get('/',[AllCoursesController::class,'index'])->name('index');
+    Route::post('/filter/major',[AllCoursesController::class,'getByMajor'])->name('filter.major');
+    Route::post('/all',[AllCoursesController::class,'getAll'])->name('all');
 });
 
-Route::get('/courses',function(){
-    return Inertia::render('Mahasiswa/AllCourses');
+Route::middleware(['auth','role:mahasiswa'])->prefix('enroll')->name('mahasiswa.enroll')->group(function(){
+    Route::get('{id}',[EnrollController::class,'index'])->name('index');
+    Route::post('check',[EnrollController::class,'enroll'])->name('enroll');
 });
 
-Route::get('/class',function(){
-    return Inertia::render('Mahasiswa/YourClass');
+Route::middleware(['auth','role:mahasiswa'])->prefix('class')->name('mahasiswa.class')->group(function(){
+    Route::get('/',[YourClassController::class,'index'])->name('index');    
+    Route::get('detail/{id}',[YourClassController::class,'detail'])->name('detail');    
 });
+
+
 Route::get('/profile',function(){
     return Inertia::render('YourProfile');
 });
-Route::get('/enroll/{id}',function(){
-    return Inertia::render('Mahasiswa/Enroll');
-});
-Route::get('/class/detail/{id}',function(){
-    return Inertia::render('Mahasiswa/ClassDetail');
-});
+
+
 
 Route::get('/dosen/home',function(){
     return Inertia::render('Dosen/Homepage');
@@ -60,9 +68,6 @@ Route::get('/dosen/class/detail/{id}/upload',function(){
     return Inertia::render('Dosen/Upload');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 require __DIR__.'/auth.php';

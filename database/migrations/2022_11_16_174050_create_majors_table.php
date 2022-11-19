@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('waitings', function (Blueprint $table) {
+        Schema::create('majors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained();
-            $table->foreignId("class_id")->constrained();
-            $table->boolean('is_approved')->default(false);
+            $table->string("name");
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('waitings');
+        Schema::dropIfExists('majors');
     }
 };

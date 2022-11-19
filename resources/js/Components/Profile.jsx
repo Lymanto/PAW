@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/inertia-react";
 import React, { useRef, useState } from "react";
 import ProfileImage from "../assets/images/profile.svg";
-export default function Profile() {
+export default function Profile({ name }) {
     const [open, setOpen] = useState(true);
     const dropdownTarget = useRef();
 
@@ -17,7 +17,7 @@ export default function Profile() {
     return (
         <>
             <div className="flex flex-row items-center" onClick={trigger}>
-                <div className="mr-[16px] font-medium">Lymanto Hadibrata</div>
+                <div className="mr-[16px] font-medium">{name}</div>
                 <img src={ProfileImage} alt="profile image" />
             </div>
             <div
@@ -31,8 +31,10 @@ export default function Profile() {
                     Profile
                 </Link>
                 <Link
-                    href="/logout"
+                    href={route("logout")}
+                    method="post"
                     className="transition-all hover:bg-sky-100 p-4"
+                    as="button"
                 >
                     Sign Out
                 </Link>

@@ -1,12 +1,14 @@
 import Button from "@/Components/Button";
 import { Head, Link } from "@inertiajs/inertia-react";
 import React, { useState } from "react";
-import Logo from "../../assets/images/logo.png";
-import ICPlay from "../../assets/icon/ICPlay.svg";
-import ICPlayActive from "../../assets/icon/ICPlayActive.svg";
+import Logo from "../../../assets/images/logo.png";
+import ICPlay from "../../../assets/icon/ICPlay.svg";
+import ICPlayActive from "../../../assets/icon/ICPlayActive.svg";
 import Profile from "@/Components/Profile";
+// import ReactPlayer from "react-player";
+import { AzureMP } from "react-azure-mp";
 
-export default function ClassDetail() {
+export default function ClassDetail({ auth, detail, videoList }) {
     const [active, setActive] = useState(1);
     const majorData = [
         { id: 1, title: "Pertemuan 1" },
@@ -68,9 +70,9 @@ export default function ClassDetail() {
             </div>
             <div className="w-full flex flex-col">
                 <div className="self-end pt-[44px] pr-[40px]">
-                    <Profile />
+                    <Profile name={auth.user.name} />
                 </div>
-                <div className="ml-[300px] pl-[50px] mt-[50px] pr-[40px]">
+                <div className="ml-[300px] pl-[50px] my-[50px] pr-[40px]">
                     <h1 className="font-semibold text-2xl">Dasar HTML</h1>
                     <p className="pt-[10px]">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -83,6 +85,22 @@ export default function ClassDetail() {
                         non proident, sunt in culpa qui officia deserunt mollit
                         anim id est laborum.
                     </p>
+                    <div className="mt-[30px]">
+                        {/* <ReactPlayer
+                            url="https://pawpradita.blob.core.windows.net/video/video1488937451.mp4"
+                            controls
+                            width={"100%"}
+                            height={"560px"}
+                        /> */}
+                        <AzureMP
+                            skin="amp-flush"
+                            src={[
+                                {
+                                    src: "https://pawpradita.blob.core.windows.net/video/video1488937451.mp4",
+                                },
+                            ]}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

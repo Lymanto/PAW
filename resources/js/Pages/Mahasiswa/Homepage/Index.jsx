@@ -4,9 +4,9 @@ import TopBar from "@/Components/TopBar";
 import { Head } from "@inertiajs/inertia-react";
 import React from "react";
 import Flickity from "react-flickity-component";
-import History1 from "../../assets/images/history1.png";
+import History1 from "../../../assets/images/history1.png";
 
-export default function Homepage() {
+export default function Homepage(props) {
     const flickityOption = {
         cellAlign: "left",
         contain: true,
@@ -26,7 +26,7 @@ export default function Homepage() {
             </Head>
             <Sidebar active="home" type="mahasiswa" />
             <div className="ml-[300px] pl-[50px] pr-[40px] pt-[40px]">
-                <TopBar />
+                <TopBar auth={props.auth} />
             </div>
 
             <div className="ml-[300px] pl-[50px]">
