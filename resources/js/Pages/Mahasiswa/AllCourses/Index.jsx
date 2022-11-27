@@ -60,7 +60,7 @@ export default function AllCourses({ auth, major, courses }) {
                 />
                 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
             </Head>
-            <Sidebar active="allCourses" type="mahasiswa" />
+            <Sidebar active="allCourses" type="mahasiswa" auth={auth} />
             <div className="ml-[300px] pl-[50px] pr-[40px] pt-[40px]">
                 <TopBar auth={auth} />
             </div>

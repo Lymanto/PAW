@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+// use Illuminate\Database\Eloquent\Casts\Attribute;
 class Video extends Model
 {
     use HasFactory;
@@ -18,6 +19,21 @@ class Video extends Model
      */
     public function classes(): BelongsTo
     {
-        return $this->belongsTo(Classes::class);
+        return $this->belongsTo(Classes::class,'class_id','id');
     }
+    
+    // protected function video_url(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn ($value) => url($value),
+    //     );
+    // }
+
+    // protected function thumbnail(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn ($value) => url('images/'.$value),
+    //     );
+    // }
 }
+

@@ -1,12 +1,11 @@
 import HistoryBox from "@/Components/HistoryBox";
 import Sidebar from "@/Components/Sidebar";
 import TopBar from "@/Components/TopBar";
-import { Head } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 import React from "react";
 import Flickity from "react-flickity-component";
-import History1 from "../../../assets/images/history1.png";
 
-export default function Homepage(props) {
+export default function Homepage({ auth, history }) {
     const flickityOption = {
         cellAlign: "left",
         contain: true,
@@ -24,9 +23,9 @@ export default function Homepage(props) {
                     href="https://unpkg.com/flickity@2/dist/flickity.min.css"
                 />
             </Head>
-            <Sidebar active="home" type="mahasiswa" />
+            <Sidebar active="home" type="mahasiswa" auth={auth} />
             <div className="ml-[300px] pl-[50px] pr-[40px] pt-[40px]">
-                <TopBar auth={props.auth} />
+                <TopBar auth={auth} />
             </div>
 
             <div className="ml-[300px] pl-[50px]">
@@ -34,26 +33,35 @@ export default function Homepage(props) {
                     History
                 </h1>
                 <Flickity options={flickityOption} className="gap-[30px]">
-                    <HistoryBox
-                        images={History1}
-                        title="Pertemuan 4 - Pemrograman Web"
-                        subTitle="Master Edison"
-                        href="/"
-                        className={"mr-[20px]"}
-                    />
-                    <HistoryBox
-                        images={History1}
-                        title="Pertemuan 4 - Pemrograman Web"
-                        subTitle="Master Edison"
-                        href="/"
-                        className={"mr-[20px]"}
-                    />
-                    <HistoryBox
-                        images={History1}
-                        title="Pertemuan 4 - Pemrograman Web"
-                        subTitle="Master Edison"
-                        href="/"
-                    />
+                    {history != "" ? (
+                        history.map((val) => {
+                            return (
+                                <HistoryBox
+                                    images={`storage/images/${val.video.thumbnail}`}
+                                    title={`${val.video.title} - ${val.classes.title}`}
+                                    subTitle={val.classes.user.name}
+                                    href={route(
+                                        "mahasiswa.class.detail.video",
+                                        [val.classes.id, val.video.id]
+                                    )}
+                                    className={"mr-[20px]"}
+                                    key={val.id}
+                                />
+                            );
+                        })
+                    ) : (
+                        <div className="h-[100px]">
+                            <div className="mb-[30px]">
+                                Kamu belum menonton kelas manapun
+                            </div>
+                            <Link
+                                className="py-[8px] px-[40px] rounded-lg font-semibold bg-alerange text-white"
+                                href="/class"
+                            >
+                                Cari kelas
+                            </Link>
+                        </div>
+                    )}
                 </Flickity>
             </div>
         </div>

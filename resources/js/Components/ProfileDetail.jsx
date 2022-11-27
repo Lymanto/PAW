@@ -9,18 +9,22 @@ export default function ProfileDetail({ email, nim, jurusan }) {
                     {email}
                 </div>
             </div>
-            <div className="mb-[30px]">
-                <div className="font-medium">NIM</div>
-                <div className="font-normal mt-[10px] text-[#999999]">
-                    {nim}
+            {nim != null && (
+                <div className="mb-[30px]">
+                    <div className="font-medium">NIM</div>
+                    <div className="font-normal mt-[10px] text-[#999999]">
+                        {nim}
+                    </div>
                 </div>
-            </div>
-            <div className="mb-[30px]">
-                <div className="font-medium">Jurusan</div>
-                <div className="font-normal mt-[10px] text-[#999999]">
-                    {jurusan}
+            )}
+            {jurusan != null && (
+                <div className="mb-[30px]">
+                    <div className="font-medium">Jurusan</div>
+                    <div className="font-normal mt-[10px] text-[#999999]">
+                        {jurusan}
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

@@ -16,13 +16,19 @@ import ICLogout from "../assets/icon/ICLogout.svg";
 import { Link } from "@inertiajs/inertia-react";
 import "../../css/sidebar.css";
 
-export default function Sidebar({ active = "home", type = "mahasiswa" }) {
+export default function Sidebar({ active = "home", type = "mahasiswa", auth }) {
     return (
         <div className="p-[30px] pr-0 w-[300px] border-[#E5E7EB] border-r-[1px] h-full fixed flex flex-col justify-between">
             {type === "mahasiswa" && (
                 <div>
                     <div className="img-logo pb-[50px]">
-                        <Link href="/home">
+                        <Link
+                            href={
+                                auth.user.roles[0].name == "mahasiswa"
+                                    ? "/home"
+                                    : "/dosen/home"
+                            }
+                        >
                             <img
                                 src={Logo}
                                 className="w-full"
@@ -80,7 +86,13 @@ export default function Sidebar({ active = "home", type = "mahasiswa" }) {
             {type === "dosen" && (
                 <div>
                     <div className="img-logo pb-[50px]">
-                        <Link href="/home">
+                        <Link
+                            href={
+                                auth.user.roles[0].name == "mahasiswa"
+                                    ? "/home"
+                                    : "/dosen/home"
+                            }
+                        >
                             <img
                                 src={Logo}
                                 className="w-full"
@@ -127,7 +139,11 @@ export default function Sidebar({ active = "home", type = "mahasiswa" }) {
                         className={`side-link ${
                             active === "profile" && "active"
                         }`}
-                        href="/profile"
+                        href={
+                            auth.user.roles[0].name == "mahasiswa"
+                                ? "/profile"
+                                : "/dosen/profile"
+                        }
                     >
                         <img
                             src={
@@ -138,9 +154,14 @@ export default function Sidebar({ active = "home", type = "mahasiswa" }) {
                         />
                         Your Profile
                     </Link>
-                    <Link className="side-link ">
+                    <Link
+                        className="side-link"
+                        href={route("logout")}
+                        method="post"
+                        as="button"
+                    >
                         <img src={ICLogout} />
-                        Logout
+                        Sign Out
                     </Link>
                 </div>
             </div>

@@ -24,5 +24,13 @@ class Member extends Model
     {
         return $this->belongsTo(Classes::class,"class_id","id");
     }
-    
+    /**
+     * Get the user that owns the Member
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

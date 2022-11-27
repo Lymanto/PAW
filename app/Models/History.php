@@ -19,7 +19,7 @@ class History extends Model
      */
     public function classes(): HasOne
     {
-        return $this->hasOne(Classes::class);
+        return $this->hasOne(Classes::class, 'id', 'class_id');
     }
 
     /**
@@ -29,6 +29,6 @@ class History extends Model
      */
     public function video(): HasOne
     {
-        return $this->hasOne(Video::class);
+        return $this->hasOne(Video::class, 'id', 'video_id');
     }
 }

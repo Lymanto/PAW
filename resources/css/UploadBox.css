@@ -1,5 +1,5 @@
 #form-file-upload {
-    @apply h-full text-center w-full relative;
+    @apply h-full w-full relative;
 }
 
 #input-file-upload {

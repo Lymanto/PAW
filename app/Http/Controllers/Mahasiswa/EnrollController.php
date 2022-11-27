@@ -11,10 +11,19 @@ class EnrollController extends Controller
 {
     public function index(Request $request)
     {
-        $classes = Classes::where("id",$request->id)
-                            ->with("user:id,name")
-                            ->first();
-        return inertia('Mahasiswa/Enroll/Index',["classes"=>$classes]);
+        $member = Member::where("user_id",auth()->user()->id)
+                ->where("class_id",$request->id)
+                ->whereIsApproved(true)
+                ->first();
+        if($member){
+            return redirect()->route('mahasiswa.class.detail',[$request->id]);
+        }else{
+            $classes = Classes::where("id",$request->id)
+                                ->with("user:id,name")
+                                ->first();
+        
+            return inertia('Mahasiswa/Enroll/Index',["classes"=>$classes]);
+        }
     }
 
     public function enroll(Request $request)

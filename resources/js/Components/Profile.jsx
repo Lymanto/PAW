@@ -33,7 +33,7 @@ export default function Profile({ name }) {
                 <Link
                     href={route("logout")}
                     method="post"
-                    className="transition-all hover:bg-sky-100 p-4"
+                    className="transition-all hover:bg-sky-100 p-4 text-left"
                     as="button"
                 >
                     Sign Out

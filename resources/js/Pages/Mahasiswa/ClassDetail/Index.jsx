@@ -6,24 +6,17 @@ import ICPlay from "../../../assets/icon/ICPlay.svg";
 import ICPlayActive from "../../../assets/icon/ICPlayActive.svg";
 import Profile from "@/Components/Profile";
 // import ReactPlayer from "react-player";
-import { AzureMP } from "react-azure-mp";
 
-export default function ClassDetail({ auth, detail, videoList }) {
-    const [active, setActive] = useState(1);
-    const majorData = [
-        { id: 1, title: "Pertemuan 1" },
-        { id: 2, title: "Pertemuan 2" },
-        { id: 3, title: "Pertemuan 3" },
-        { id: 4, title: "Pertemuan 4" },
-        { id: 5, title: "Pertemuan 5" },
-        { id: 6, title: "Pertemuan 6" },
-        { id: 7, title: "Pertemuan 7" },
-        { id: 8, title: "Pertemuan 8" },
-        { id: 9, title: "Pertemuan 9" },
-        { id: 10, title: "Pertemuan 10" },
-        { id: 11, title: "Pertemuan 11" },
-        { id: 12, title: "Pertemuan 12" },
-    ];
+import { Inertia } from "@inertiajs/inertia";
+import ReactPlayer from "react-player";
+
+export default function ClassDetail({ auth, detail, videoList, active }) {
+    const handleClick = (id) => {
+        Inertia.post(route("mahasiswa.class.history"), {
+            class_id: detail.id,
+            video_id: id,
+        });
+    };
     return (
         <div className="flex flex-row">
             <Head title="Class Detail" />
@@ -40,22 +33,26 @@ export default function ClassDetail({ auth, detail, videoList }) {
                     </div>
                     <div className="mb-[20px]">
                         <h2 className="font-semibold text-lg mb-[8px]">
-                            Pemrograman Web
+                            {detail.title}
                         </h2>
-                        <p className="text-sm">Master Edison</p>
+                        <p className="text-sm">{detail.user.name}</p>
                     </div>
                     <div className="flex flex-col gap-y-[20px] max-h-[520px] overflow-y-scroll">
-                        {majorData.map((val) => {
+                        {videoList.map((val) => {
                             return (
                                 <Button
                                     className="flex flex-row justify-center items-center py-[10px] pl-[20px] gap-x-[10px] min-w-[210px] max-w-[210px] rounded-full"
                                     variant={
-                                        active === val.id ? "primary" : "second"
+                                        active.id === val.id
+                                            ? "primary"
+                                            : "second"
                                     }
+                                    onClick={() => handleClick(val.id)}
+                                    key={val.id}
                                 >
                                     <img
                                         src={
-                                            active === val.id
+                                            active.id === val.id
                                                 ? ICPlayActive
                                                 : ICPlay
                                         }
@@ -73,32 +70,15 @@ export default function ClassDetail({ auth, detail, videoList }) {
                     <Profile name={auth.user.name} />
                 </div>
                 <div className="ml-[300px] pl-[50px] my-[50px] pr-[40px]">
-                    <h1 className="font-semibold text-2xl">Dasar HTML</h1>
-                    <p className="pt-[10px]">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                    </p>
-                    <div className="mt-[30px]">
-                        {/* <ReactPlayer
-                            url="https://pawpradita.blob.core.windows.net/video/video1488937451.mp4"
-                            controls
-                            width={"100%"}
-                            height={"560px"}
-                        /> */}
-                        <AzureMP
-                            skin="amp-flush"
-                            src={[
-                                {
-                                    src: "https://pawpradita.blob.core.windows.net/video/video1488937451.mp4",
-                                },
-                            ]}
+                    <h1 className="font-semibold text-2xl">{active.title}</h1>
+                    <p className="pt-[10px]">{active.description}</p>
+                    <div className="mt-[30px] h-[560px] w-full relative bg-black">
+                        <ReactPlayer
+                            url={`/storage/${active.video_url}`}
+                            controls={true}
+                            width="100%"
+                            height="100%"
+                            className="react-player"
                         />
                     </div>
                 </div>

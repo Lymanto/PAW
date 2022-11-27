@@ -1,21 +1,22 @@
 import ChangePassword from "@/Components/ChangePassword";
-import ClassBox from "@/Components/ClassBox";
-
-import MajorOption from "@/Components/MajorOption";
 import ProfileDetail from "@/Components/ProfileDetail";
 import Sidebar from "@/Components/Sidebar";
 import TopBar from "@/Components/TopBar";
 import { Head } from "@inertiajs/inertia-react";
 import React from "react";
-import History1 from "../assets/images/history1.png";
 
-export default function YourProfile() {
+export default function YourProfile({ auth, token, email }) {
+    console.log(auth);
     return (
         <div className="hvh-100">
             <Head title="Your Profile" />
-            <Sidebar active="profile" type="mahasiswa" />
+            <Sidebar
+                active="profile"
+                type={auth.user.roles[0].name}
+                auth={auth}
+            />
             <div className="ml-[300px] pl-[50px] pr-[40px] pt-[40px]">
-                <TopBar />
+                <TopBar auth={auth} />
             </div>
 
             <div className="ml-[300px] pl-[50px] pr-[40px]">
@@ -24,11 +25,11 @@ export default function YourProfile() {
                 </h1>
                 <div className=" flex flex-row justify-between">
                     <ProfileDetail
-                        email="lymanto.hadibrata@student.pradita.ac.id"
-                        nim="2010101022"
-                        jurusan="Informatika"
+                        email={auth.user.email}
+                        nim={auth.user.nim}
+                        jurusan={auth.user.major}
                     />
-                    <ChangePassword />
+                    <ChangePassword token={token} email={email} />
                 </div>
             </div>
         </div>

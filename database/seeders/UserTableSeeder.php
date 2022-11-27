@@ -21,19 +21,20 @@ class UserTableSeeder extends Seeder
             'password'=>bcrypt('admin123'),
         ]);
         $admin->assignRole('admin');
-
+        
         $dosen = User::create([
             'name'=>'Handri Santoso',
             'email'=>'handri.santoso@pradita.ac.id',
             'password'=>bcrypt('dosen123'),
         ]);
         $dosen->assignRole('dosen');
-
+        
         $mahasiswa = User::create([
             'name'=>'Lymanto Hadibrata',
             'nim'=>'2010101022',
             'email'=>'lymanto.hadibrata@student.pradita.ac.id',
             'password'=>bcrypt('mahasiswa123'),
+            'major'=>"Informatika",
         ]);
         $mahasiswa->assignRole('mahasiswa');
         

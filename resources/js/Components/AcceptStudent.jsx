@@ -5,14 +5,21 @@ import ICApprove from "../assets/icon/ICApprove.svg";
 import Button from "./Button";
 import "../../css/AcceptStudent.css";
 
-export default function AcceptStudent({ title, subTitle, nim, variant }) {
+export default function AcceptStudent({
+    title,
+    subTitle,
+    nim,
+    variant,
+    onHandleAccept,
+    onHandleReject,
+}) {
     return (
         <>
             {variant === "notification" ? (
                 <div className="pb-[30px] flex flex-row items-center">
                     <img src={UserProfile} width={60} height={60} />
                     <div className="flex flex-row gap-[80px]">
-                        <div className="ml-[15px] flex flex-col gap-[5px]">
+                        <div className="ml-[15px] flex flex-col gap-[5px] w-[500px]">
                             <div className="flex flex-row gap-[8px] items-center">
                                 <span className="font-semibold">{title}</span>
                                 <span className="w-[3px] h-[3px] bg-black rounded-full"></span>
@@ -25,10 +32,16 @@ export default function AcceptStudent({ title, subTitle, nim, variant }) {
                             </div>
                         </div>
                         <div className="flex flex-row items-center gap-[20px]">
-                            <Button className="btn-cancel">
+                            <Button
+                                className="btn-cancel"
+                                onClick={onHandleReject}
+                            >
                                 <img src={ICCancel} className="m-auto" alt="" />
                             </Button>
-                            <Button className="btn-approve">
+                            <Button
+                                className="btn-approve"
+                                onClick={onHandleAccept}
+                            >
                                 <img
                                     src={ICApprove}
                                     className="m-auto"
@@ -51,10 +64,16 @@ export default function AcceptStudent({ title, subTitle, nim, variant }) {
                             </div>
                         </div>
                         <div className="flex flex-row items-center gap-[20px]">
-                            <Button className="btn-cancel">
+                            <Button
+                                className="btn-cancel"
+                                onClick={onHandleReject}
+                            >
                                 <img src={ICCancel} className="m-auto" alt="" />
                             </Button>
-                            <Button className="btn-approve">
+                            <Button
+                                className="btn-approve"
+                                onClick={onHandleAccept}
+                            >
                                 <img
                                     src={ICApprove}
                                     className="m-auto"

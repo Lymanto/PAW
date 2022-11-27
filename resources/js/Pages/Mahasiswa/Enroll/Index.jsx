@@ -55,7 +55,7 @@ export default function Enroll({ auth, classes }) {
                         <img src={Logo} className="w-full" alt="Logo Pradita" />
                     </Link>
                 </div>
-                <SearchInput />
+                {/* <SearchInput /> */}
                 <Profile name={auth.user.name} />
             </div>
             <div className="px-[40px] flex flex-row">
@@ -85,6 +85,7 @@ export default function Enroll({ auth, classes }) {
                             <TextInput
                                 placeholder="Enter Code"
                                 className="w-[222px] mr-[20px]"
+                                value={classCode}
                                 handleChange={(e) =>
                                     setClassCode(e.target.value)
                                 }
