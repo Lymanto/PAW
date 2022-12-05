@@ -92,6 +92,10 @@ export default function Enroll({ auth, classes }) {
                             />
                             <Button onClick={onHandleEnroll}>Submit</Button>
                         </div>
+                        <div className="text-sm my-1 text-gray-400">
+                            <span className="text-red-600">*</span> Kode didapat
+                            dari dosen
+                        </div>
                     </div>
                 </div>
             </div>
